@@ -8,9 +8,7 @@ function App() {
       <header className="App-header" style={ {color: "" }}>
         recrue
       </header>
-      <div>
-        
-      </div>
+      
     </div>
   );
 }
