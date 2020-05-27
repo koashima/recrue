@@ -1,13 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Button } from 'semantic-ui-react'
 
 function App() {
   return (
-    <div className="">
-      <header className="">
+    
+    <div className="App">
+      <header className="App-header" style={ {color: "" }}>
         recrue
       </header>
+      <div>
+        
+      </div>
     </div>
   );
 }
