@@ -5,15 +5,17 @@ import Nav from './components/Nav';
 
 function App() {
   return (
-    <Router>
+    <Switch>
       <div className="App">
         <header className="App-header" style={{ fontStyle: "italic"}}>R E <span style={{ textDecoration: 'line-through'}}>C R U E</span></header>
         <Nav/>
         <Switch>
-          <Route></Route>
+          <Route>
+          
+          </Route>
         </Switch>
       </div>      
-    </Router>
+    </Switch>
 
   );
 }
