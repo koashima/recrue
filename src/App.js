@@ -9,6 +9,9 @@ function App() {
       <div className="App">
         <header className="App-header" style={{ fontStyle: "italic"}}>R E <span style={{ textDecoration: 'line-through'}}>C R U E</span></header>
         <Nav/>
+        <Switch>
+          <Route></Route>
+        </Switch>
       </div>      
     </Router>
 
