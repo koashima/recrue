@@ -8,9 +8,10 @@ const app = express();
 require('dotenv').config();
 require('./config/database');
 
+
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use('/')
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
@@ -28,4 +29,4 @@ app.get('/*', (req, res) => {
 // development to avoid collision with React's dev server
 const port = process.env.PORT || 3001;
 
-app.listen(port, () => console.log(`Express app running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`)); 
