@@ -90,7 +90,7 @@ const SignupForm = (props) => {
         <div className="col-sm-12 text-center">
           <button
             className="btn btn-default"
-            disabled={isFormInvalid()}
+            disabled={isFormInvalid}
           >
             Sign Up
           </button>

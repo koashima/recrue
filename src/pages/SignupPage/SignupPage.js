@@ -3,10 +3,10 @@ import SignupForm from '../../components/SignupForm/SignupForm'
 
 
 const SignupPage = (props) => { 
-  const [message, setMessage] = useState({message: ''});
+  const [message, setMessage] = useState('');
 
   const updateMessage = (msg) => { 
-    setMessage({message: msg});
+    setMessage(msg);
   }
 
   return ( 
