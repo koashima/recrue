@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import userService from "../../utils/userService";
 
-const SignupForm = () => { 
-
+const SignupForm = (props) => { 
+  return (
+    <h1>SIGNUP</h1>
+  )
 }
 
 export default SignupForm;

@@ -4,7 +4,7 @@ const LoginPage = () => {
   const [userCred] = useState({email: '', password: ''})
   
   return ( 
-    pass
+    <h1>LOGIN</h1>
   )
 }
 

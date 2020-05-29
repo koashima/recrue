@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch, Link} from 'react-router-dom';
-import Nav from './components/Nav';
+import Nav from './components/Nav/Nav';
+import SignupPage from './pages/SignupPage/SignupPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
 
 function App() {
   return (
@@ -11,17 +14,20 @@ function App() {
         <Nav/>
         <Switch>
           <Route 
-            exact path='/signup'
-            
-          />
+            exact path='/signup' 
+            render={ (props) => 
+              <SignupPage/>
+          } />
           <Route 
             exact path='/login'
-            
-          />
+            render={ (props) => 
+              <LoginPage/>
+          }/>
           <Route 
             exact path='/prospects'
-            
-          />
+            render={ (props) => 
+              <ProspectsPage/> 
+          }/>
         </Switch>
       </div>      
     </Switch>
