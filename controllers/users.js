@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-signup = async (req, res) => { 
+const signup = async (req, res) => { 
   const user = new User(req.body);
   try {
    await user.save();
