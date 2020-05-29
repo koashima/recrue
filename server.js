@@ -21,7 +21,7 @@ app.use('/api', require('./routes/api/users'))
 // The following "catch all" route (note the *)is necessary
 // for a SPA's client-side routing to properly work
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', index.html));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Configure to use port 3001 instead of 3000 during

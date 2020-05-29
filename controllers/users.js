@@ -10,6 +10,11 @@ signup = async (req, res) => {
   }
 };
 
+const logout = () => { 
+  
+}
+
+
 module.exports = { 
   signup,
   logout,
