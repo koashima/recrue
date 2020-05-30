@@ -5,9 +5,11 @@ import Nav from './components/Nav/Nav';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
+import userService from './utils/userService';
 
 function App() {
-  useState()
+  let [user, setUser] = useState(userService.getUser())
+  
   return (
     <Switch>
       <div className="App">
