@@ -16,14 +16,19 @@ function App() {
         <Switch>
           <Route 
             exact path='/signup' 
-            render={ (props) => 
-              <SignupPage/>
-          } />
+            render={ ({history}) => (
+              <SignupPage
+                history={history} 
+              /> 
+            )} 
+          />
           <Route 
             exact path='/login'
             render={ (props) => 
               <LoginPage/>
-          }/>
+
+            }
+          />
           <Route 
             exact path='/prospects'
             render={ (props) => 

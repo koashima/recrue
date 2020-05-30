@@ -22,22 +22,25 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.set('toJSON', { 
-  transform: (doc, ret) => {
+userSchema.set("toJSON", { 
+  transform: function (doc, ret) {
     delete ret.password;
     return ret;
-  } 
+  }, 
 });
 
-userSchema.pre('save', (next) => {
-  const user = this;
-  if(!user.isModified('password')) return next();
 
-  bcrypt.hash(user.password, SALT_ROUNDS, (err, hash) => {
-    if(err) return next(err);
+userSchema.pre("save", function (next) {
+  const user = this;
+  if (!user.isModified("password")) return next();
+  // password has been changed - salt and hash it
+  bcrypt.hash(user.password, SALT_ROUNDS, function (err, hash) {
+    if (err) return next(err);
+    // replace the user provided password with the hash
     user.password = hash;
-    return next();
+    next();
   });
 });
+
 
 module.exports = mongoose.model('User', userSchema);

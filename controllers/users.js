@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-const signup = async (req, res) => { 
+async function signup(req, res) { 
   const user = new User(req.body);
   try {
    await user.save();
@@ -10,12 +10,7 @@ const signup = async (req, res) => {
   }
 };
 
-const logout = () => { 
-  
-}
-
 
 module.exports = { 
   signup,
-  logout,
 };

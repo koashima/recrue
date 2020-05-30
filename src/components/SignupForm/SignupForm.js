@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import userService from "../../utils/userService";
+
+
 const SignupForm = (props) => { 
   
   const [userCred, setUserCred] = useState({
@@ -12,17 +14,17 @@ const SignupForm = (props) => {
   
   function handleChange(e) {
     props.updateMessage('');
-    setUserCred({
-      // Using ES2015 Computed Property Names
-      [e.target.name]: e.target.value
-    });
+    e.persist()
+    setUserCred( userCred => ({
+      ...userCred, [e.target.name]: e.target.value
+    }));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       await userService.signup(userCred);
-      // Successfully signed up - show GamePage
+      // Successfully signed up - show HomePage
       props.history.push('/');
     } catch (err) {
       // Invalid user data (probably duplicate email)
@@ -90,7 +92,7 @@ const SignupForm = (props) => {
         <div className="col-sm-12 text-center">
           <button
             className="btn btn-default"
-            disabled={isFormInvalid}
+            disabled={isFormInvalid()}
           >
             Sign Up
           </button>

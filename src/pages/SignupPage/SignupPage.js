@@ -10,7 +10,12 @@ const SignupPage = (props) => {
   }
 
   return ( 
-    <SignupForm updateMessage={updateMessage}/>
+    <div>
+      <SignupForm {...props} updateMessage={updateMessage}/>
+      <p>{message}</p>
+    </div>
+
+  
   )
 }
 
