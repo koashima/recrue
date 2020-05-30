@@ -38,7 +38,9 @@ const SignupForm = (props) => {
 
   return (
     <div>
-    <header className="header-footer">SIGN UP</header>
+    <br/>
+    <header className="">SIGN UP</header>
+    <br/>
     <form className="form-horizontal" onSubmit={handleSubmit}>
       <div className="form-group">
         <div className="col-sm-12">
