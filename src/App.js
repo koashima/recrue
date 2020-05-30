@@ -10,17 +10,32 @@ import userService from './utils/userService';
 function App() {
   let [user, setUser] = useState(userService.getUser())
   
+
+  function handleLogout() { 
+    userService.logout();
+    setUser({user: null});
+  }
+
+  function handleSignup() {
+    setUser({user: userService.getUser()});
+  }
+
   return (
     <Switch>
       <div className="App">
         <header className="App-header" style={{ fontStyle: "italic"}}>R E <span style={{ textDecoration: 'line-through'}}>C R U E</span></header>
-        <Nav user={user} />
+        <Nav 
+          user={user} 
+          handleLogout={handleLogout}
+        />
+
         <Switch>
           <Route 
             exact path='/signup' 
             render={ ({history}) => (
               <SignupPage
-                history={history} 
+                history={history}
+                handleSignup={handleSignup}
               /> 
             )} 
           />

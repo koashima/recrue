@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Nav.css'
+
 
 const Nav = (props) => { 
   let nav = props.user ? (
@@ -12,7 +14,7 @@ const Nav = (props) => {
         LOG OUT
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span className="NavBar-welcome">WELCOME, {props.user.name}</span>
+      <span className="welcome">WELCOME, {props.user.name}</span>
     </div>
   ) : (
     <div>

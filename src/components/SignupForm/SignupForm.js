@@ -24,6 +24,8 @@ const SignupForm = (props) => {
     e.preventDefault();
     try {
       await userService.signup(userCred);
+      // let App know a user has signed up
+      props.handleSignup();
       // Successfully signed up - show HomePage
       props.history.push('/');
     } catch (err) {

@@ -5,7 +5,12 @@ const BASE_URL = "/api/users/";
 export default {
   signup,
   getUser,
+  logout,
 };
+
+function logout() {
+  tokenService.removeToken();
+}
 
 function getUser() {
   return tokenService.getUserFromToken();
