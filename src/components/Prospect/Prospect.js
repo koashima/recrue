@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react';
 
-const Prospect = () => { 
+const Prospect = (props) => { 
   
   return (
       <Container className="ui small button">

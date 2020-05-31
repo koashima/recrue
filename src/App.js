@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Route, Switch, Link} from 'react-router-dom';
+import { Route, Switch, } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';

@@ -15,10 +15,15 @@ const SignupForm = (props) => {
   function handleChange(e) {
     props.updateMessage('');
     e.persist()
-    setUserCred( userCred => ({
-      ...userCred, [e.target.name]: e.target.value
-    }));
+    setUserCred({
+      ...userCred, 
+      [e.target.name]: e.target.value
+    })
   }
+
+  // setUserCred( userCred => ({
+  //   ...userCred, [e.target.name]: e.target.value
+  // }));
 
   async function handleSubmit(e) {
     e.preventDefault();

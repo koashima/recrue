@@ -9,9 +9,10 @@ const LoginPage = (props) => {
   
   function handleChange(e) {
     e.persist()
-    setUserCred( userCred => ({
-      ...userCred, [e.target.name]: e.target.value
-    }))
+    setUserCred({
+      ...userCred,
+      [e.target.name]: e.target.value
+    })
   }
 
   async function handleSubmit(e) {
