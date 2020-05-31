@@ -25,7 +25,7 @@ const SignupForm = (props) => {
     try {
       await userService.signup(userCred);
       // let App know a user has signed up
-      props.handleSignup();
+      props.handleSignupOrLogin();
       // Successfully signed up - show HomePage
       props.history.push('/');
     } catch (err) {

@@ -16,7 +16,7 @@ function App() {
     setUser({user: null});
   }
 
-  function handleSignup() {
+  function handleSignupOrLogin() {
     setUser({user: userService.getUser()});
   }
 
@@ -35,14 +35,16 @@ function App() {
             render={ ({history}) => (
               <SignupPage
                 history={history}
-                handleSignup={handleSignup}
+                handleSignupOrLogin={handleSignupOrLogin}
               /> 
             )} 
           />
           <Route 
             exact path='/login'
-            render={ (props) => 
-              <LoginPage/>
+            render={ ({history}) => 
+              <LoginPage 
+                history={history}
+                handleSignupOrLogin={handleSignupOrLogin}/>
 
             }
           />

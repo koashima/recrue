@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import userService from '../../utils/userService';
 
-const LoginPage = () => {
+
+const LoginPage = (props) => {
 
   const [userCred, setUserCred] = useState({email: '', pw: ''})
   
   function handleChange(e) {
-    setUserCred(
-      ...userCred,
-      {
-        [e.target.name]: e.target.value
-      }
-    
-    )
+    e.persist()
+    setUserCred( userCred => ({
+      ...userCred, [e.target.name]: e.target.value
+    }))
   }
 
-  function handleSubmit (e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    try {
+      await userService.login(userCred);
+      // let App know a user has signed up
+      props.handleSignupOrLogin();
+      // Successfully signed up - show HomePage
+      props.history.push('/');
+    } catch (err) {
+      // Invalid user data (probably duplicate email)
+      alert('Invalid Credentials!')
+    }
   }
 
     return (
