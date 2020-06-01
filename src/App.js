@@ -18,8 +18,6 @@ import Interaction from './components/Interaction/Interaction';
 
 function App() {
 
-
-
   let [user, setUser] = useState(userService.getUser())
   
   function handleLogout() { 
@@ -30,8 +28,6 @@ function App() {
   function handleSignupOrLogin() {
     setUser({user: userService.getUser()});
   }
-
-
 
   return (
     <Switch>
@@ -66,8 +62,6 @@ function App() {
           <Route path="/prospects/:id" render={ (props) => 
             <Prospect swag={swag} {...props} />
           } />
-          <Note />
-          <Interaction />
       </div>      
     </Switch>
   );

@@ -9,4 +9,4 @@ const Info = (props) => {
   )
 }
 
-export default ProspectsPage;
+export default Info;

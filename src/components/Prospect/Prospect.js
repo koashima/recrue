@@ -1,4 +1,8 @@
 import React from 'react';
+import Info from '../Info/Info';
+import Interaction from '../Interaction/Interaction';
+import Note from '../Note/Note';
+
 
 class Prospect extends React.Component {
   constructor() { 
@@ -17,6 +21,9 @@ class Prospect extends React.Component {
   render() { 
     return(
       <>
+        <Info />
+        <Interaction />
+        <Note />
         <h1>{this.state.firstName}</h1>
         <p>{this.state.lastName}</p>
       </>  

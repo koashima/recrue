@@ -5,9 +5,7 @@ const Prospect = () => {
 
 
   return(
-
-    <div className="App Prospect">
-      
+    <div className="">
       <Info /> 
       <Interaction /> 
       <Note /> 
