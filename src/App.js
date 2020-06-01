@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Route, Switch, } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
+import userService from './utils/userService';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import Nav from './components/Nav/Nav';
 import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
-import userService from './utils/userService';
+import Prospect from './components/Prospect/Prospect';
 import Note from './components/Note/Note';
-import Interactions from './components/Interactions/Interactions';
+import Interaction from './components/Interaction/Interaction';
+
+  const swag = [
+    {firstName: 'Koa',
+     lastName: 'Shima'
+    }
+  ];
 
 function App() {
-  
+
+
+
   let [user, setUser] = useState(userService.getUser())
   
   function handleLogout() { 
@@ -21,6 +30,8 @@ function App() {
   function handleSignupOrLogin() {
     setUser({user: userService.getUser()});
   }
+
+
 
   return (
     <Switch>
@@ -47,16 +58,16 @@ function App() {
               <LoginPage 
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}/>
-
             }
           />
-          <Route 
-            exact path='/prospects'
-            render={ (props) => 
-              <ProspectsPage /> 
-          }/>
+          <Route path="/prospects" render={ (props) => 
+            <ProspectsPage swag={swag} {...props} />
+          } />
+          <Route path="/prospects/:id" render={ (props) => 
+            <Prospect swag={swag} {...props} />
+          } />
           <Note />
-          <Interactions />
+          <Interaction />
       </div>      
     </Switch>
   );

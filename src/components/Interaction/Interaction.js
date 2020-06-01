@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container } from 'semantic-ui-react';
 
 
-const Interactions = () => { 
+const Interaction = () => { 
 
   const Checkbox = ({ type = "checkbox", name, checked = false, onChange }) => {
   
@@ -61,4 +61,4 @@ const Interactions = () => {
   );
 };
 
-export default Interactions;
+export default Interaction;
