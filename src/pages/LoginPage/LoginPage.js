@@ -30,15 +30,15 @@ const LoginPage = (props) => {
   }
 
     return (
-      <div className="LoginPage">
-        <header className="header-footer">Log In</header>
+      <div className="LoginPage ui form">
+        <header className="header-footer">LOG IN</header>
         <form className="form-horizontal" onSubmit={handleSubmit} >
           <div className="form-group">
             <div className="col-sm-12">
               <input 
                 type="email" 
                 className="form-control" 
-                placeholder="Email" 
+                placeholder="EMAIL" 
                 value={userCred.email} 
                 name="email" 
                 onChange={handleChange} />
@@ -49,7 +49,7 @@ const LoginPage = (props) => {
               <input 
                 type="password" 
                 className="form-control" 
-                placeholder="Password" 
+                placeholder="PASSWORD" 
                 value={userCred.pw} 
                 name="pw" 
                 onChange={handleChange} />
@@ -57,8 +57,8 @@ const LoginPage = (props) => {
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Log In</button>&nbsp;&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
+              <button className="ui button">LOG IN</button>&nbsp;&nbsp;&nbsp;
+              <Link to='/' className='ui button'>CANCEL</Link>
             </div>
           </div>
         </form>

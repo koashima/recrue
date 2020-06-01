@@ -6,11 +6,13 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
 import userService from './utils/userService';
+import Note from './components/Note/Note';
+import Interactions from './components/Interactions/Interactions';
 
 function App() {
+  
   let [user, setUser] = useState(userService.getUser())
   
-
   function handleLogout() { 
     userService.logout();
     setUser({user: null});
@@ -51,8 +53,10 @@ function App() {
           <Route 
             exact path='/prospects'
             render={ (props) => 
-              <ProspectsPage/> 
+              <ProspectsPage /> 
           }/>
+          <Note />
+          <Interactions />
       </div>      
     </Switch>
   );

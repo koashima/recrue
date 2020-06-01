@@ -21,10 +21,6 @@ const SignupForm = (props) => {
     })
   }
 
-  // setUserCred( userCred => ({
-  //   ...userCred, [e.target.name]: e.target.value
-  // }));
-
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -48,13 +44,13 @@ const SignupForm = (props) => {
     <br/>
     <header className="">SIGN UP</header>
     <br/>
-    <form className="form-horizontal" onSubmit={handleSubmit}>
+    <form className="form-horizontal ui form" onSubmit={handleSubmit}>
       <div className="form-group">
         <div className="col-sm-12">
           <input
             type="text"
             className="form-control"
-            placeholder="Name"
+            placeholder="NAME"
             value={userCred.name}
             name="name"
             onChange={handleChange}
@@ -66,7 +62,7 @@ const SignupForm = (props) => {
           <input
             type="email"
             className="form-control"
-            placeholder="Email"
+            placeholder="EMAIL"
             value={userCred.email}
             name="email"
             onChange={handleChange}
@@ -78,7 +74,7 @@ const SignupForm = (props) => {
           <input
             type="password"
             className="form-control"
-            placeholder="Password"
+            placeholder="PASSWORD"
             value={userCred.password}
             name="password"
             onChange={handleChange}
@@ -90,7 +86,7 @@ const SignupForm = (props) => {
           <input
             type="password"
             className="form-control"
-            placeholder="Confirm Password"
+            placeholder="CONFIRM PASSWORD"
             value={userCred.passwordConf}
             name="passwordConf"
             onChange={handleChange}

@@ -1,7 +1,6 @@
 * {
-  margin: 0 auto;
-  padding: 0;
   box-sizing: border-box;
+  margin: 0 auto;
   color: #5A0;
 }
 
@@ -16,7 +15,10 @@ html {
 .App {
   text-align: center;
   height: 100vh;
+  max-width: 1000px;
+  padding: 40px;
   background-color: #DFA;
+
 }
 
 .App-header {
