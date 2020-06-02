@@ -20,12 +20,13 @@ class Prospect extends React.Component {
 
   render() { 
     return(
-      <>
+      <>        
+        <h1>{this.state.firstName}</h1>
+        <p>{this.state.lastName}</p>
         <Info />
         <Interaction />
         <Note />
-        <h1>{this.state.firstName}</h1>
-        <p>{this.state.lastName}</p>
+
       </>  
     );
   }

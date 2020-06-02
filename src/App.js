@@ -7,26 +7,41 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import Nav from './components/Nav/Nav';
 import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
 import Prospect from './components/Prospect/Prospect';
-import Note from './components/Note/Note';
-import Interaction from './components/Interaction/Interaction';
+import prospectService from './utils/prospectService';
+import AddProspect from './pages/AddProspect/AddProspect';
 
   const swag = [
-    {firstName: 'Koa',
-     lastName: 'Shima'
+    {
+      firstName: 'Koa',
+      lastName: 'Shima'
+    },
+    {
+      firstName: 'Holli',
+      lastName: 'Coleman'
     }
   ];
 
 function App() {
 
   let [user, setUser] = useState(userService.getUser())
+  let [prospect, setProspect] = useState({prospects: []})
   
   function handleLogout() { 
     userService.logout();
-    setUser({user: null});
+    setUser(null);
   }
 
   function handleSignupOrLogin() {
     setUser({user: userService.getUser()});
+  }
+
+  
+  const handleAddProspect = async newProspectData => {
+    const newProspect = await prospectService.create(newProspectData);
+    setProspect(state => ({
+      prospect: [...prospect, newProspect]
+    }), (props) => 
+    props.history.push('/'));
   }
 
   return (
@@ -34,11 +49,16 @@ function App() {
       <div className="App">
         <header className="App-header" style={{ fontStyle: "italic"}}>R E <span style={{ textDecoration: 'line-through'}}>C R U E</span></header>
       <Switch>
-        <Nav 
-          user={user} 
-          handleLogout={handleLogout}
+        <Route 
+          exact path='/'
+          render={ (props) =>
+            <Nav 
+              user={user}
+              handleLogout={handleLogout}
+            />               
+          }
         />
-      </Switch>  
+      </Switch>
           <Route 
             exact path='/signup' 
             render={ ({history}) => (
@@ -57,14 +77,24 @@ function App() {
             }
           />
           <Route path="/prospects" render={ (props) => 
-            <ProspectsPage swag={swag} {...props} />
+            <ProspectsPage swag={swag} user={user} {...props} />
           } />
           <Route path="/prospects/:id" render={ (props) => 
             <Prospect swag={swag} {...props} />
           } />
+          <Route 
+            exact path='/addprospect'
+            render={ ({history}) => 
+              <AddProspect 
+                history={history}
+                handleAddProspect={handleAddProspect}/>
+            }
+          />
       </div>      
     </Switch>
   );
 }
+
+
 
 export default App;
