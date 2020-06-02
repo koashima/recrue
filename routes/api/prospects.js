@@ -4,9 +4,9 @@ const router = express.Router();
 const prospectsCtrl = require('../../controllers/prospects');
 
 
+router.get('/',prospectsCtrl.index);
 
 router.post('/', checkAuth, prospectsCtrl.create)
-
 
 
 function checkAuth(req, res, next) {

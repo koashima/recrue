@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
+
 const ProspectsPage = (props) => { 
 
   return (
@@ -11,9 +11,13 @@ const ProspectsPage = (props) => {
       <h1>MY PROSPECTS</h1>
     </div>
       <div>
-        {props.swag.map( (p, i) => 
+        {props.prospect.map( (p, i) => 
             <div className='container ui basic vertical buttons' key={i}>
-              <Link className='ui basic button' to={`/prospects/${i}`}>{p.firstName}{p.lastName}►</Link> 
+              <Link 
+                className='ui basic button' 
+                to={`/prospects/${i}`}>{p.firstName}{p.lastName}
+                ►
+              </Link> 
             </div>
         )}
       </div>

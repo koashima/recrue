@@ -8,7 +8,14 @@ const interactionSchema = new Schema({
   instagram: Boolean
 }, {
   timestamps: true
-})
+});
+
+const noteSchema = new Schema({
+  notes: String
+}, {
+  timestamps: true
+});
+
 const prospectSchema = new Schema(
   {
     firstName: String,
@@ -30,7 +37,7 @@ const prospectSchema = new Schema(
     gpaU: String,
     score: String,
     interaction: [interactionSchema],
-    notes: String,
+    notes: [noteSchema]
   }, 
   {
     timestamps: true

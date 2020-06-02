@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Switch, } from 'react-router-dom';
 import userService from './utils/userService';
@@ -10,21 +10,10 @@ import Prospect from './components/Prospect/Prospect';
 import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
 
-  const swag = [
-    {
-      firstName: 'Koa',
-      lastName: 'Shima'
-    },
-    {
-      firstName: 'Holli',
-      lastName: 'Coleman'
-    }
-  ];
-
 function App() {
 
   let [user, setUser] = useState(userService.getUser())
-  let [prospect, setProspect] = useState({prospects: []})
+  let [prospect, setProspect] = useState()
   
   function handleLogout() { 
     userService.logout();
@@ -46,6 +35,14 @@ function App() {
     }), (props) => 
     props.history.push('/'));
   }
+
+  useEffect( () => {
+    async function getProspects () {
+      const prospects = await prospectService.getAll();
+      setProspect(prospects);
+    } 
+    getProspects()
+  }, []);
 
   return (
     <Switch>
@@ -80,10 +77,10 @@ function App() {
             }
           />
           <Route exact path="/prospects" render={ (props) => 
-            <ProspectsPage swag={swag} user={user} {...props} />
+            <ProspectsPage prospect={prospect} user={user} {...props} />
           } />
           <Route path="/prospects/:id" render={ (props) => 
-            <Prospect swag={swag} {...props} />
+            <Prospect prospect={prospect} {...props} />
           } />
           <Route 
             exact path='/addprospect'

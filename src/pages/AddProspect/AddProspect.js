@@ -39,7 +39,7 @@ const AddProspect = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-     const newProspect = await prospectService.create(prospect);
+     await prospectService.create(prospect);
       // let App know a user has signed up
       props.handleNew();
       // Successfully signed up - show HomePage
