@@ -5,7 +5,8 @@ const prospectsCtrl = require('../../controllers/prospects');
 
 
 
-router.post('/addprospect', checkAuth, prospectsCtrl.create)
+router.post('/', checkAuth, prospectsCtrl.create)
+
 
 
 function checkAuth(req, res, next) {

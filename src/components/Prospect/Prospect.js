@@ -2,7 +2,7 @@ import React from 'react';
 import Info from '../Info/Info';
 import Interaction from '../Interaction/Interaction';
 import Note from '../Note/Note';
-
+import { Link } from 'react-router-dom';
 
 class Prospect extends React.Component {
   constructor() { 
@@ -20,14 +20,15 @@ class Prospect extends React.Component {
 
   render() { 
     return(
-      <>        
+      <div className="App">
+        <Link className="ui button fluid" to={'/prospects'}>◄ MY PROSPECTS</Link>
         <h1>{this.state.firstName}</h1>
         <p>{this.state.lastName}</p>
         <Info />
         <Interaction />
         <Note />
 
-      </>  
+      </div>  
     );
   }
 }

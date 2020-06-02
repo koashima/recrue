@@ -6,15 +6,14 @@ const ProspectsPage = (props) => {
   return (
     <div>
       <h1>MY PROSPECTS</h1>
-      <ul>
+      <Link className="ui button" to={'/addprospect'}>+ NEW PROSPECT</Link>
+      <div>
         {props.swag.map( (p, i) => 
-          <div>
             <Container key={i}>
-              <Link className='ui button large' to={`/prospects/${i}`}>{p.firstName}{p.lastName}</Link> 
+              <Link className='ui button large' to={`/prospects/${i}`}>{p.firstName}{p.lastName}►</Link> 
             </Container>
-          </div>
         )}
-      </ul>
+      </div>
     </div>
   );
 }

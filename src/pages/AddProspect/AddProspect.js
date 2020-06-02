@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
 
 
@@ -38,21 +39,21 @@ const AddProspect = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await prospectService.signup();
+     const newProspect = await prospectService.create(prospect);
       // let App know a user has signed up
-      props.handleSignupOrLo();
+      props.handleNew();
       // Successfully signed up - show HomePage
       props.history.push('/prospects');
     } catch (err) {
       // Invalid user data (probably duplicate email)
-      props.updateMessage(err.message);
+      console.log(err)
     }
   }
 
   return (
     <div className="add-prospect-page ui container">
       <h1>ADD PROSPECT</h1>
-      <Button className="ui justified container" onClick={() => props.history.push('/prospects')}>BACK</Button>
+      <Link className="ui button fluid" to={'/prospects'}>◄ MY PROSPECTS</Link>
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>
           <Form.Input 

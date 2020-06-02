@@ -32,9 +32,12 @@ function App() {
   }
 
   function handleSignupOrLogin() {
-    setUser({user: userService.getUser()});
+    setUser(userService.getUser());
   }
 
+  function handleNewProspect () {
+    setProspect()
+  }
   
   const handleAddProspect = async newProspectData => {
     const newProspect = await prospectService.create(newProspectData);
@@ -76,7 +79,7 @@ function App() {
                 handleSignupOrLogin={handleSignupOrLogin}/>
             }
           />
-          <Route path="/prospects" render={ (props) => 
+          <Route exact path="/prospects" render={ (props) => 
             <ProspectsPage swag={swag} user={user} {...props} />
           } />
           <Route path="/prospects/:id" render={ (props) => 
