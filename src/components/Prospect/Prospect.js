@@ -21,7 +21,13 @@ class Prospect extends React.Component {
     console.log(`Feched id#${id}`)
     this.setState( (prevState) => ({
       firstName: this.props.prospect[id].firstName,
-      lastName: this.props.prospect[id].lastName
+      lastName: this.props.prospect[id].lastName,
+      position: this.props.prospect[id].position,
+      year: this.props.prospect[id].year,
+      phone: this.props.prospect[id].phone,
+      email: this.props.prospect[id].email,
+      city: this.props.prospect[id].city,
+      state: this.props.prospect[id].state,
     }));
   }
 
@@ -33,14 +39,21 @@ class Prospect extends React.Component {
       <br/>
         <h1>{this.state.firstName}</h1>
         <p>{this.state.lastName}</p>
+        <p>{this.state.position}</p>
+        <p>{this.state.year}</p>
+        <p>{this.state.phone}</p>
+        <p>{this.state.email}</p>
+        <p>{this.state.city}</p>
+        <p>{this.state.state}</p>
+        <p>{this.state.city}</p>
         <Info />
         <Interaction />
         <Notes />
+
       </>  
     );
   }
 }
-
 export default Prospect;
 
 

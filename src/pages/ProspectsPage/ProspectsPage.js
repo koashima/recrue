@@ -12,13 +12,20 @@ const ProspectsPage = (props) => {
     </div>
       <div>
         {props.prospect.map( (p, i) => 
-            <div className='container ui basic vertical buttons' key={i}>
-              <Link 
-                className='ui basic button' 
-                to={`/prospects/${i}`}>{p.firstName}{p.lastName}
-                ►
-              </Link> 
-            </div>
+          <div className='container ui basic vertical buttons' key={i}>
+            <Link 
+              className='ui basic button' 
+              to={`/prospects/${i}`}>{p.firstName}{p.lastName}
+              ►
+            </Link> 
+            <Link className="ui button" to={{pathname: '/editprospect', state: {p} }}>EDIT</Link>
+            <button
+                className='ui button'
+                onClick={() => props.handleDeleteProspect(p._id)}
+                >
+                DELETE
+            </button>
+          </div>
         )}
       </div>
     </div>

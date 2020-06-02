@@ -5,6 +5,7 @@ const BASE_URL = '/api/prospects'
 export default {
   create,
   getAll,
+  update,
 }
 
 function getAll() {
@@ -27,5 +28,21 @@ function create(prospect){
 
   },
       body: JSON.stringify(prospect)
+  }, {mode: "cors"}).then(res => res.json());
+}
+
+
+function update(prospect) {
+  console.log(prospect)
+  
+  const url = `${BASE_URL}/${prospect._id}`
+  console.log(url)
+  return fetch(url, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': 'Bearer ' + tokenService.getToken()
+  },
+    body: JSON.stringify(prospect)
   }, {mode: "cors"}).then(res => res.json());
 }

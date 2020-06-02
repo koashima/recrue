@@ -9,6 +9,7 @@ import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
 import Prospect from './components/Prospect/Prospect';
 import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
+import EditProspect from './pages/EditProspect/EditProspect';
 
 function App() {
 
@@ -24,14 +25,29 @@ function App() {
     setUser(userService.getUser());
   }
 
-  function handleNewProspect () {
-    setProspect()
-  }
+
   
   const handleAddProspect = async newProspectData => {
     const newProspect = await prospectService.create(newProspectData);
     setProspect(state => ({
       prospect: [...prospect, newProspect]
+    }), (props) => 
+    props.history.push('/'));
+  }
+
+  const handleUpdateProspect = async updatedProspectData => {
+    const updatedProspect = await prospectService.update(updatedProspectData);
+  
+    const newProspectArray = prospect.map(p => 
+      p._id === updatedProspect._id ? updatedProspect : p);
+    setProspect({prospect: newProspectArray})
+  }
+
+
+  const handleDeleteProspect = async id => {
+    await prospectService.deleteOne(id);
+    setProspect(state => ({
+      prospect: prospect.filter(p => p._id !== id)
     }), (props) => 
     props.history.push('/'));
   }
@@ -42,7 +58,7 @@ function App() {
       setProspect(prospects);
     } 
     getProspects()
-  }, []);
+  });
 
   return (
     <Switch>
@@ -77,7 +93,10 @@ function App() {
             }
           />
           <Route exact path="/prospects" render={ (props) => 
-            <ProspectsPage prospect={prospect} user={user} {...props} />
+            <ProspectsPage 
+              prospect={prospect} 
+              user={user} {...props}
+              handleDeleteProspect={handleDeleteProspect} />
           } />
           <Route path="/prospects/:id" render={ (props) => 
             <Prospect prospect={prospect} {...props} />
@@ -88,6 +107,15 @@ function App() {
               <AddProspect 
                 history={history}
                 handleAddProspect={handleAddProspect}/>
+            }
+          />
+          <Route 
+            exact path='/editprospect'
+            render={ ({history, location}) => 
+              <EditProspect 
+                history={history}
+                location={location}
+                handleUpdateProspect={handleUpdateProspect}/>
             }
           />
       </div>      

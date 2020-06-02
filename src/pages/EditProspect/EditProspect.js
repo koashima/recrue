@@ -4,28 +4,11 @@ import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
 
 
-const AddProspect = (props) => { 
+const EditProspect = (props) => { 
 
   const [prospect, setProspect] = useState({
-    firstName: "",
-    lastName: "",
-    profile: "",
-    year: "",
-    position: "",
-    height: "",
-    weight: "",
-    highSchool: "",
-    clubTeam: "",
-    phone: "",
-    email: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    gpaW: "",
-    gpaU: "",
-    score: "",
-  });
+    p: props.location.state.p
+});
 
 
   function handleChange(e) {
@@ -36,23 +19,17 @@ const AddProspect = (props) => {
     })
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    try {
-     await prospectService.create(prospect);
-      // let App know a user has signed up
-      props.handleNew();
-      // Successfully signed up - show HomePage
-      props.history.push('/prospects');
-    } catch (err) {
-      // Invalid user data (probably duplicate email)
-      console.log(err)
-    }
+     prospectService.update(prospect);
+      props.handleUpdateProspect(prospect.p);
+      props.history.push('/');
   }
 
   return (
     <div className="add-prospect-page ui container">
-      <h1>ADD PROSPECT</h1>
+      <h1>{prospect.p.firstName}</h1>
+      <h4>{prospect.p.lastName}</h4>
       <Link className="ui top attached button" to={'/prospects'}>◄ MY PROSPECTS</Link>
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>
@@ -145,4 +122,4 @@ const AddProspect = (props) => {
   )
 }
 
-export default AddProspect;
+export default EditProspect;
