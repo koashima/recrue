@@ -1,7 +1,7 @@
 import React from 'react';
 import Info from '../Info/Info';
 import Interaction from '../Interaction/Interaction';
-import Note from '../Note/Note';
+import Note from '../Notes/Notes';
 import { Link } from 'react-router-dom';
 
 class Prospect extends React.Component {

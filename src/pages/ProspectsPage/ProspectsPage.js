@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 const ProspectsPage = (props) => { 
 
   return (
-    <div>
+    <div classnamee='container'>
+    <div classnamee='ui top attached buttons'>
+      <Link className="ui button " to={'/addprospect'}>+ NEW PROSPECT</Link>
+      <Link to="" className="ui button " onClick={props.handleLogout}>LOG OUT</Link>
       <h1>MY PROSPECTS</h1>
-      <Link className="ui top attached button" to={'/addprospect'}>+ NEW PROSPECT</Link>
+    </div>
       <div>
         {props.swag.map( (p, i) => 
             <div className='container ui basic vertical buttons' key={i}>

@@ -4,6 +4,9 @@ import { Container } from 'semantic-ui-react';
 
 const Interaction = () => { 
 
+  const [checkedItems, setCheckedItems] = useState({});
+
+
   const Checkbox = ({ type = "checkbox", name, checked = false, onChange }) => {
   
     return (
@@ -12,12 +15,11 @@ const Interaction = () => {
   };
   
   
-  const [checkedItems, setCheckedItems] = useState({});
-
-  const handleChange = event => {
+  const handleChange = e => {
+    e.persist()
     setCheckedItems({
       ...checkedItems,
-      [event.target.name]: event.target.checked
+      [e.target.name]: e.target.checked
     });
   };
   
@@ -30,26 +32,25 @@ const Interaction = () => {
     {
       name: "call",
       key: "checkBox2",
-      label: "phone"
+      label: "call"
     },
     {
       name: "text",
       key: "checkBox3",
-      label: "phone"
+      label: "text"
     },
     {
-      name: "social media",
+      name: "instagram",
       key: "checkBox4",
-      label: "phone"
+      label: "instagram"
     }
   ];
 
   return (
     <Container textAlign="center">
-      <label>Checked item name : {checkedItems["email"]} </label> <br />
       {checkboxes.map(item => (
         <label key={item.key}>
-          {item.name}
+          {item.label}
           <Checkbox
             name={item.name}
             checked={checkedItems[item.name]}

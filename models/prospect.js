@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const interactionSchema = new Schema({
+  email: Boolean,
+  call: Boolean,
+  text: Boolean,
+  instagram: Boolean
+}, {
+  timestamps: true
+})
 const prospectSchema = new Schema(
   {
     firstName: String,
@@ -21,7 +29,10 @@ const prospectSchema = new Schema(
     gpaW: String,
     gpaU: String,
     score: String,
-  }, {
+    interaction: [interactionSchema],
+    notes: String,
+  }, 
+  {
     timestamps: true
   },
 );
