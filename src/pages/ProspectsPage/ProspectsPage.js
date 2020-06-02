@@ -6,12 +6,12 @@ const ProspectsPage = (props) => {
   return (
     <div>
       <h1>MY PROSPECTS</h1>
-      <Link className="ui button" to={'/addprospect'}>+ NEW PROSPECT</Link>
+      <Link className="ui top attached button" to={'/addprospect'}>+ NEW PROSPECT</Link>
       <div>
         {props.swag.map( (p, i) => 
-            <Container key={i}>
-              <Link className='ui button large' to={`/prospects/${i}`}>{p.firstName}{p.lastName}►</Link> 
-            </Container>
+            <div className='container ui basic vertical buttons' key={i}>
+              <Link className='ui basic button' to={`/prospects/${i}`}>{p.firstName}{p.lastName}►</Link> 
+            </div>
         )}
       </div>
     </div>

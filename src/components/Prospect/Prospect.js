@@ -21,13 +21,14 @@ class Prospect extends React.Component {
   render() { 
     return(
       <div className="App">
-        <Link className="ui button fluid" to={'/prospects'}>◄ MY PROSPECTS</Link>
+        <Link className="ui left floated button" to={'/prospects'}>◄ MY PROSPECTS</Link>
+        <br/>
+        <br/>
         <h1>{this.state.firstName}</h1>
         <p>{this.state.lastName}</p>
         <Info />
         <Interaction />
         <Note />
-
       </div>  
     );
   }

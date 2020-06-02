@@ -53,7 +53,7 @@ const AddProspect = (props) => {
   return (
     <div className="add-prospect-page ui container">
       <h1>ADD PROSPECT</h1>
-      <Link className="ui button fluid" to={'/prospects'}>◄ MY PROSPECTS</Link>
+      <Link className="ui top attached button" to={'/prospects'}>◄ MY PROSPECTS</Link>
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>
           <Form.Input 
@@ -139,7 +139,7 @@ const AddProspect = (props) => {
             onChange={handleChange}
           />        
         </Form.Group>
-        <Form.Button className="ui ">SUBMIT</Form.Button>
+        <Form.Button className="ui bottom attached button">SUBMIT</Form.Button>
       </Form>
     </div>
   )
