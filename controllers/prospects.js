@@ -27,7 +27,7 @@ async function create(req, res) {
 
 async function update(req, res) {
   try{
-      const updatedProspect = await Prospect.findByIdAndUpdate(req.params.id, req.body, {new: true});
+      const updatedProspect = await Prospect.findOneAndUpdate(req.params.id, req.body, {new: true});
       res.status(200).json(updatedProspect);
   }
   catch(err){
@@ -35,11 +35,12 @@ async function update(req, res) {
   }
 }
 
-function deleteOne(id) {
-  return fetch(`${BASE_URL}/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Authorization': 'Bearer ' + tokenService.getToken()
-    }
-  }, {mode: "cors"}).then(res => res.json());
+async function deleteOne(req, res) {
+  try{
+    const deletedEntry = await Prospect.findByIdAndRemove(req.params.id)
+      res.status(200).json(deletedEntry)
+  }
+    catch(err){
+      res.status(500).json(err)
+  }
 }

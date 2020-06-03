@@ -6,6 +6,7 @@ export default {
   create,
   getAll,
   update,
+  deleteOne
 }
 
 function getAll() {
@@ -31,7 +32,6 @@ function create(prospect){
   }, {mode: "cors"}).then(res => res.json());
 }
 
-
 function update(prospect) {
   console.log(prospect)
   
@@ -43,6 +43,16 @@ function update(prospect) {
       'content-type': 'application/json',
       'Authorization': 'Bearer ' + tokenService.getToken()
   },
-    body: JSON.stringify(prospect)
+     body: JSON.stringify(prospect)
   }, {mode: "cors"}).then(res => res.json());
+}
+
+function deleteOne(id) {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  }
+  return fetch(`${BASE_URL}/${id}`, options).then(res => res.json())
 }

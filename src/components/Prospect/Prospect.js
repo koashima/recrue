@@ -18,7 +18,6 @@ class Prospect extends React.Component {
     console.log('compenentDidMount')
     const id = this.props.match.params.id;
 
-    console.log(`Feched id#${id}`)
     this.setState( (prevState) => ({
       firstName: this.props.prospect[id].firstName,
       lastName: this.props.prospect[id].lastName,

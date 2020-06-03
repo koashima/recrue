@@ -43,7 +43,7 @@ const AddProspect = (props) => {
       // let App know a user has signed up
       props.handleNew();
       // Successfully signed up - show HomePage
-      props.history.push('/prospects');
+      props.history.push('/');
     } catch (err) {
       // Invalid user data (probably duplicate email)
       console.log(err)
