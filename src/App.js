@@ -11,12 +11,11 @@ import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
 import EditProspect from './pages/EditProspect/EditProspect';
 
-function App() {
+const App = () => {
 
   let [user, setUser] = useState(userService.getUser())
-  let [prospect, setProspect] = useState(getProspects())
+  let [prospect, setProspect] = useState()
   
-
 
   function handleLogout() { 
     userService.logout();
@@ -54,13 +53,15 @@ function App() {
     props.history.push('/'));
   }
   
-  async function getProspects () {
-    const prospects = await prospectService.getAll();
-    console.log(prospects)
-    setProspect(prospects);
-  } 
+  useEffect( () => {
+    async function getProspects () {
+      const prospects = await prospectService.getAll();
+      setProspect(prospects);
+    } 
+    getProspects()
+  }, []);
 
-
+  
   return (
     <Switch>
       <div className="App">
