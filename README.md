@@ -15,8 +15,8 @@ This is an app meant to help manage communication in regards to atheletic recrui
 
 ## Getting Started:
 
-[Trello](https://trello.com/b/WUnLVBAh/recrue)
-[Heroku](https://www.google.com)
+- [Trello](https://trello.com/b/WUnLVBAh/recrue)
+- [Heroku](https://recrue.herokuapp.com/)
 
 
 ## Next Steps
