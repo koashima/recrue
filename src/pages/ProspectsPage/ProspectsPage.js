@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-const ProspectsPage = (props) => { 
+function ProspectsPage (props) { 
 
-  // useEffect()
 
   return (
     <div classnamee='container'>

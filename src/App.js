@@ -60,8 +60,7 @@ const App = () => {
       setProspect(prospects);
     } 
     getProspects()
-  }, [prospect, setProspect]);
-
+  }, []);
 
   return (
     <Switch>
