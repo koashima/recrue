@@ -10,11 +10,12 @@ import Prospect from './components/Prospect/Prospect';
 import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
 import EditProspect from './pages/EditProspect/EditProspect';
+import { set } from 'mongoose';
 
 const App = () => {
 
   let [user, setUser] = useState(userService.getUser())
-  let [prospect, setProspect] = useState()
+  let [prospect, setProspect] = useState([])
   
 
   function handleLogout() { 
@@ -59,9 +60,9 @@ const App = () => {
       setProspect(prospects);
     } 
     getProspects()
-  }, []);
+  }, [prospect, setProspect]);
 
-  
+
   return (
     <Switch>
       <div className="App">
@@ -94,8 +95,9 @@ const App = () => {
                 handleSignupOrLogin={handleSignupOrLogin}/>
             }
           />
-          <Route exact path="/prospects" render={ (props) => 
-            <ProspectsPage 
+          <Route exact path="/prospects" render={ ({props, history}) => 
+            <ProspectsPage
+              history={history}
               prospect={prospect} 
               user={user} {...props}
               handleDeleteProspect={handleDeleteProspect} />

@@ -19,12 +19,9 @@ const LoginPage = (props) => {
     e.preventDefault();
     try {
       await userService.login(userCred);
-      // let App know a user has signed up
       props.handleSignupOrLogin();
-      // Successfully signed up - show HomePage
       props.history.push('/prospects');
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       alert('Invalid Credentials!')
     }
   }

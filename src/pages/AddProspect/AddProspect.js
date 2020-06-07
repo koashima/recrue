@@ -40,12 +40,9 @@ const AddProspect = (props) => {
     e.preventDefault();
     try {
      await prospectService.create(prospect);
-      // let App know a user has signed up
       props.handleNew();
-      // Successfully signed up - show HomePage
       props.history.push('/');
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       console.log(err)
     }
   }
