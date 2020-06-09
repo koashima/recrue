@@ -40,8 +40,7 @@ const AddProspect = (props) => {
     e.preventDefault();
     try {
      await prospectService.create(prospect);
-      props.handleNew();
-      props.history.push('/');
+      props.history.push('/prospects');
     } catch (err) {
       console.log(err)
     }
