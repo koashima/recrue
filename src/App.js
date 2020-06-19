@@ -42,7 +42,14 @@ const App = () => {
     setProspect({prospect: newProspectArray})
   }
 
-  
+  useEffect( () => {
+    async function getProspects () {
+      const prospects = await prospectService.getAll();
+      setProspect(prospects);
+    } 
+    getProspects()
+  }, []);
+
   return (
     <Switch>
       <>
