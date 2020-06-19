@@ -10,7 +10,6 @@ import Prospect from './components/Prospect/Prospect';
 import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
 import EditProspect from './pages/EditProspect/EditProspect';
-import { set } from 'mongoose';
 
 const App = () => {
 
@@ -27,11 +26,9 @@ const App = () => {
     setUser(userService.getUser());
   }
 
-
-  
   const handleAddProspect = async newProspectData => {
     const newProspect = await prospectService.create(newProspectData);
-    setProspect(state => ({
+    setProspect( ({
       prospect: [...prospect, newProspect]
     }), (props) => 
     props.history.push('/'));
@@ -45,84 +42,75 @@ const App = () => {
     setProspect({prospect: newProspectArray})
   }
 
-
-  const handleDeleteProspect = async id => {
-    await prospectService.deleteOne(id);
-    setProspect(state => ({
-      prospect: prospect.filter(p => p._id !== id)
-    }), (props) => 
-    props.history.push('/'));
-  }
-  
   useEffect( () => {
     async function getProspects () {
       const prospects = await prospectService.getAll();
       setProspect(prospects);
     } 
     getProspects()
-  }, [prospect, setProspect]);
-
+  }, []);
 
   return (
     <Switch>
+      <>
       <div className="App">
         <header className="App-header" style={{ fontStyle: "italic"}}>R E <span style={{ textDecoration: 'line-through'}}>C R U E</span></header>
-      <Switch>
+
         <Route 
           exact path='/'
-          render={ (props) =>
+          render={ () =>
             <Nav 
               user={user}
               handleLogout={handleLogout}
             />               
           }
         />
-      </Switch>
-          <Route 
-            exact path='/signup' 
-            render={ ({history}) => (
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              /> 
-            )} 
-          />
-          <Route 
-            exact path='/login'
-            render={ ({history}) => 
-              <LoginPage 
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}/>
-            }
-          />
-          <Route exact path="/prospects" render={ ({props, history}) => 
-            <ProspectsPage
+
+        <Route 
+          exact path='/signup' 
+          render={ ({history}) => (
+            <SignupPage
               history={history}
-              prospect={prospect} 
-              user={user} {...props}
-              handleDeleteProspect={handleDeleteProspect} />
-          } />
-          <Route path="/prospects/:id" render={ (props) => 
-            <Prospect prospect={prospect} {...props} />
-          } />
-          <Route 
-            exact path='/addprospect'
-            render={ ({history}) => 
-              <AddProspect 
-                history={history}
-                handleAddProspect={handleAddProspect}/>
-            }
-          />
-          <Route 
-            exact path='/editprospect'
-            render={ ({history, location}) => 
-              <EditProspect 
-                history={history}
-                location={location}
-                handleUpdateProspect={handleUpdateProspect}/>
-            }
-          />
+              handleSignupOrLogin={handleSignupOrLogin}
+            /> 
+          )} 
+        />
+        <Route 
+          exact path='/login'
+          render={ ({history}) => 
+            <LoginPage 
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}/>
+          }
+        />
+        <Route exact path="/prospects" render={ ({props, history}) => 
+          <ProspectsPage
+            history={history}
+            prospect={prospect} 
+            user={user} {...props} />
+        } />
+        <Route path="/prospects/:id" render={ (props) => 
+          <Prospect prospect={prospect} {...props} />
+        } />
+        <Route 
+          exact path='/addprospect'
+          render={ ({history}) => 
+            <AddProspect 
+              history={history}
+              handleAddProspect={handleAddProspect}/>
+          }
+        />
+        <Route 
+          exact path='/editprospect'
+          render={ ({history, location}) => 
+            <EditProspect 
+              history={history}
+              location={location}
+              handleUpdateProspect={handleUpdateProspect}/>
+          }
+        />
       </div>      
+    </>
     </Switch>
   );
 }
