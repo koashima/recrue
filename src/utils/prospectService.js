@@ -33,7 +33,6 @@ function create(prospect){
 }
 
 function update(prospect) {
-  
   const url = `${BASE_URL}/${prospect._id}`
   console.log(url)
   return fetch(url, {

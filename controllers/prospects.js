@@ -27,20 +27,20 @@ async function create(req, res) {
 
 async function update(req, res) {
   try{
-      const updatedProspect = await Prospect.findOneAndUpdate(req.params.id, req.body, {new: true});
-      res.status(200).json(updatedProspect);
+    const updatedProspect = await Prospect.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    res.status(200).json(updatedProspect);
   }
   catch(err){
-      res.status(500).json(err);
+    res.status(500).json(err);
   }
 }
 
 async function deleteOne(req, res) {
   try{
     const deletedEntry = await Prospect.findByIdAndRemove(req.params.id)
-      res.status(200).json(deletedEntry)
+    res.status(200).json(deletedEntry)
   }
     catch(err){
-      res.status(500).json(err)
+    res.status(500).json(err)
   }
 }

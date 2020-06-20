@@ -36,7 +36,7 @@ const App = () => {
 
   const handleUpdateProspect = async updatedProspectData => {
     const updatedProspect = await prospectService.update(updatedProspectData);
-  
+    
     const newProspectArray = prospect.map(p => 
       p._id === updatedProspect._id ? updatedProspect : p);
     setProspect({prospect: newProspectArray})
