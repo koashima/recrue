@@ -1,52 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import prospectService from '../../utils/prospectService';
-function ProspectsPage (props) { 
-
-  const [prospect, setProspect] = useState([]);
-
-  useEffect( () => {
-    async function getProspects () {
-      let prospects = await prospectService.getAll();
-      setProspect(prospects);
-    } 
-    getProspects()
-  }, []);
-
-  async function handleDeleteProspect (id) {
-    await prospectService.deleteOne(id);
-    setProspect(({
-      prospect: prospect.filter(p => p._id !== id)
-    }),
-    props.history.push('/'));
-  }
-
+import Prospect from '../../components/Prospect/Prospect';
+function ProspectsPage(props) {
   return (
-    <div classnamee='container'>
-    <div classnamee='ui top attached buttons'>
-      <Link className="ui button " to={'/addprospect'}>+ NEW PROSPECT</Link>
-      <Link to="" className="ui button " onClick={props.handleLogout}>BACK</Link>
-      <h1>MY PROSPECTS</h1>
-    </div>
-      <div>
-        {props.prospects.map( (p, i) => 
-         
-          <div className='container ui basic vertical buttons' key={p._id}>
-            
-            <Link 
-              className='ui basic button' 
-              to={`/prospects/${p._id}`}>{p.firstName} {p.lastName}
-              ►
-            </Link> 
-            <Link className="ui button" to={{pathname: '/editprospect', state: {p, i} }}>EDIT</Link>
-            <button
-                className='ui button'
-                onClick={() => handleDeleteProspect(p._id)}
-                >
-                DELETE
-            </button>
-          </div>
-        )}
+    <div classnamee="container">
+      <div classnamee="ui top attached buttons">
+        <Link to="" className="ui button " onClick={props.handleLogout}>
+          BACK
+        </Link>
+        <h1>MY PROSPECTS</h1>
+      </div>
+      <div className="container ui basic vertical buttons">
+        {props.prospects.map((prospect) => (
+          <Prospect
+            key={prospect._id}
+            prospect={prospect}
+            user={props.user}
+            handleDeleteProspect={props.handleDeleteProspect}
+          />
+        ))}
       </div>
     </div>
   );
