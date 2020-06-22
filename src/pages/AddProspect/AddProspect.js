@@ -54,7 +54,7 @@ const AddProspect = (props) => {
         <Form.Group widths='equal'>
           <Form.Input 
             placeholder='FIRST NAME' 
-            name='firstName' 
+            name='firstName'
             onChange={handleChange}
           />
           <Form.Input 
@@ -66,36 +66,37 @@ const AddProspect = (props) => {
         <Form.Group widths='equal'>
           <Form.Input 
             placeholder='PROFILE' 
-            name='profile' 
+            name='profile'
             onChange={handleChange}
           />
           <Form.Input  
             placeholder='YEAR' 
-            name='year' 
+            name='year'
             onChange={handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='POSITION' 
-            name='position' 
+            name='position'
             onChange={handleChange}
           />
           <Form.Input  
             placeholder='HEIGHT' 
-            name='height' 
+            name='height'
+
             onChange={handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='WEIGHT' 
-            name='weight' 
+            name='weight'
             onChange={handleChange}
           />
           <Form.Input  
             placeholder='HIGH SCHOOL' 
-            name='highSchool' 
+            name='highSchool'
             onChange={handleChange}
           />        
         </Form.Group>
@@ -107,14 +108,14 @@ const AddProspect = (props) => {
           />
           <Form.Input  
             placeholder='PHONE' 
-            name='phone' 
+            name='phone'
             onChange={handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='EMAIL' 
-            name='email' 
+            name='email'
             onChange={handleChange}
           />
           <Form.Input  

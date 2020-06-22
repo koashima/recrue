@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import prospectService from '../../utils/prospectService';
 
 
 const EditProspect = (props) => { 
@@ -12,7 +11,7 @@ const EditProspect = (props) => {
 
 
   function handleChange(e) {
-    e.persist()
+    // e.persist()
     setProspect({
       ...prospect,
       [e.target.name]: e.target.value
@@ -21,26 +20,27 @@ const EditProspect = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-     prospectService.update(prospect);
       props.handleUpdateProspect(prospect.p);
       props.history.push('/');
   }
 
   return (
     <div className="add-prospect-page ui container">
-      <h1>{prospect.p.firstName}</h1>
-      <h4>{prospect.p.lastName}</h4>
+      {/* <h1>{prospect.p.firstName}</h1>
+      <h4>{prospect.p.lastName}</h4> */}
       <Link className="ui top attached button" to={'/prospects'}>◄ MY PROSPECTS</Link>
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>
           <Form.Input 
-            placeholder='FIRST NAME' 
-            name='firstName' 
+            placeholder= {prospect.p.firstName}
+            name='firstName'
+            value={prospect.p.firstName}
             onChange={handleChange}
           />
           <Form.Input 
             placeholder='LAST NAME' 
-            name='lastName' 
+            name='lastName'
+            value={prospect.p.lastName}
             onChange={handleChange}
           />        
         </Form.Group>

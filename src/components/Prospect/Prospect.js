@@ -19,6 +19,8 @@ class Prospect extends React.Component {
     const id = this.props.match.params.id;
 
     this.setState( (prevState) => ({
+      isEditing: null,
+
       firstName: this.props.prospect[id].firstName,
       lastName: this.props.prospect[id].lastName,
       position: this.props.prospect[id].position,
@@ -27,6 +29,7 @@ class Prospect extends React.Component {
       email: this.props.prospect[id].email,
       city: this.props.prospect[id].city,
       state: this.props.prospect[id].state,
+      id: this.props.prospect[id]._id
     }));
   }
 
@@ -37,6 +40,7 @@ class Prospect extends React.Component {
       <br/>
       <br/>
         <h1>{this.state.firstName}</h1>
+        <h1>{this.state.id}</h1>
         <p>{this.state.lastName}</p>
         <p>{this.state.position}</p>
         <p>{this.state.year}</p>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
+
 function ProspectsPage (props) { 
 
   const [prospect, setProspect] = useState([]);
+  const [editing, setEditing] = useState(null);
 
   useEffect( () => {
     async function getProspects () {
@@ -11,7 +13,7 @@ function ProspectsPage (props) {
       setProspect(prospects);
     } 
     getProspects()
-  }, [setProspect]);
+  }, []);
 
   async function handleDeleteProspect (id) {
     await prospectService.deleteOne(id);
