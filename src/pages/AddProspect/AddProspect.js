@@ -3,7 +3,6 @@ import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
 
-
 const AddProspect = (props) => { 
 
   const [prospect, setProspect] = useState({

@@ -11,7 +11,7 @@ function ProspectsPage (props) {
       setProspect(prospects);
     } 
     getProspects()
-  }, [setProspect]);
+  }, []);
 
   async function handleDeleteProspect (id) {
     await prospectService.deleteOne(id);
@@ -29,13 +29,13 @@ function ProspectsPage (props) {
       <h1>MY PROSPECTS</h1>
     </div>
       <div>
-        {prospect.map( (p, i) => 
+        {props.prospects.map( (p, i) => 
          
-          <div className='container ui basic vertical buttons' key={i}>
+          <div className='container ui basic vertical buttons' key={p._id}>
             
             <Link 
               className='ui basic button' 
-              to={`/prospects/${i}`}>{p.firstName} {p.lastName}
+              to={`/prospects/${p._id}`}>{p.firstName} {p.lastName}
               ►
             </Link> 
             <Link className="ui button" to={{pathname: '/editprospect', state: {p, i} }}>EDIT</Link>

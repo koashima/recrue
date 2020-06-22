@@ -33,16 +33,15 @@ function create(prospect){
 }
 
 function update(prospect) {
-  const url = `${BASE_URL}/${prospect._id}`
-  console.log(url)
-  return fetch(url, {
-    method: 'PUT',
-    headers: {
-      'content-type': 'application/json',
-      'Authorization': 'Bearer ' + tokenService.getToken()
-  },
-     body: JSON.stringify(prospect)
-  }, {mode: "cors"}).then(res => res.json());
+  const options = {
+      method: 'PUT',
+      headers: {
+          'Content-type': 'application/json',
+          'Authorization': 'Bearer ' + tokenService.getToken()
+      },
+      body: JSON.stringify(prospect)
+  }
+  return fetch(`${BASE_URL}/${prospect._id}`, options).then(res => res.json())
 }
 
 function deleteOne(id) {

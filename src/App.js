@@ -11,45 +11,47 @@ import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
 import EditProspect from './pages/EditProspect/EditProspect';
 
-const App = () => {
-
-  let [user, setUser] = useState(userService.getUser())
-  let [prospect, setProspect] = useState([])
+class App extends React.Component  {
   
+  state = { 
+    prospects: [],
+    user: userService.getUser
+  }
 
-  function handleLogout() { 
+  handleLogout = () => { 
     userService.logout();
-    setUser(null);
+    this.setState({ user: null });
   }
 
-  function handleSignupOrLogin() {
-    setUser(userService.getUser());
+  handleSignupOrLogin = () => {
+    this.setState({ user: userService.getUser()});
   }
 
-  const handleAddProspect = async newProspectData => {
+  handleAddProspect = async newProspectData => {
     const newProspect = await prospectService.create(newProspectData);
-    setProspect( ({
-      prospect: [...prospect, newProspect]
-    }), (props) => 
-    props.history.push('/'));
+    this.setState(state => ({
+      prospects: [...state.prospects, newProspect]
+    }), () => 
+    this.props.history.push('/'));
   }
 
-  const handleUpdateProspect = async updatedProspectData => {
+  handleUpdateProspect = async updatedProspectData => {
     const updatedProspect = await prospectService.update(updatedProspectData);
-    
-    const newProspectArray = prospect.map(p => 
-      p._id === updatedProspect._id ? updatedProspect : p);
-    setProspect({prospect: newProspectArray})
+    const newProspectArray = this.state.prospects.map(p => 
+      p._id === updatedProspect._id ? updatedProspect : p
+    );
+    this.setState(
+      {prospects: newProspectArray},
+      () => this.props.history.push('/')
+    );
   }
 
-  useEffect( () => {
-    async function getProspects () {
-      const prospects = await prospectService.getAll();
-      setProspect(prospects);
-    } 
-    getProspects()
-  }, []);
+  async componentDidMount() {
+    const prospects = await prospectService.getAll();
+    this.setState({prospects});
+  }
 
+  render() {
   return (
     <Switch>
       <>
@@ -60,8 +62,8 @@ const App = () => {
           exact path='/'
           render={ () =>
             <Nav 
-              user={user}
-              handleLogout={handleLogout}
+              user={this.user}
+              handleLogout={this.handleLogout}
             />               
           }
         />
@@ -71,7 +73,7 @@ const App = () => {
           render={ ({history}) => (
             <SignupPage
               history={history}
-              handleSignupOrLogin={handleSignupOrLogin}
+              handleSignupOrLogin={this.handleSignupOrLogin}
             /> 
           )} 
         />
@@ -80,24 +82,24 @@ const App = () => {
           render={ ({history}) => 
             <LoginPage 
               history={history}
-              handleSignupOrLogin={handleSignupOrLogin}/>
+              handleSignupOrLogin={this.handleSignupOrLogin}/>
           }
         />
         <Route exact path="/prospects" render={ ({props, history}) => 
           <ProspectsPage
             history={history}
-            prospect={prospect} 
-            user={user} {...props} />
+            prospects={this.state.prospects} 
+            user={this.state.user} {...props} />
         } />
         <Route path="/prospects/:id" render={ (props) => 
-          <Prospect prospect={prospect} {...props} />
+          <Prospect prospects={this.prospects} {...props} />
         } />
         <Route 
           exact path='/addprospect'
           render={ ({history}) => 
             <AddProspect 
               history={history}
-              handleAddProspect={handleAddProspect}/>
+              handleAddProspect={this.handleAddProspect}/>
           }
         />
         <Route 
@@ -106,13 +108,14 @@ const App = () => {
             <EditProspect 
               history={history}
               location={location}
-              handleUpdateProspect={handleUpdateProspect}/>
+              handleUpdateProspect={this.handleUpdateProspect}/>
           }
         />
       </div>      
     </>
     </Switch>
   );
+  }
 }
 
 

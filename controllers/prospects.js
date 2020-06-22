@@ -28,6 +28,9 @@ async function create(req, res) {
 async function update(req, res) {
   try{
     const updatedProspect = await Prospect.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    // console.log(req.params)
+    // console.log(`body: ${req.body}`)
+
     res.status(200).json(updatedProspect);
   }
   catch(err){
@@ -38,6 +41,7 @@ async function update(req, res) {
 async function deleteOne(req, res) {
   try{
     const deletedEntry = await Prospect.findByIdAndRemove(req.params.id)
+    console.log(req.params)
     res.status(200).json(deletedEntry)
   }
     catch(err){

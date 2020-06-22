@@ -1,125 +1,124 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
 
 
-const EditProspect = (props) => { 
+class EditProspect extends React.Component {
+  state = {
+    formData: this.props.location.state.prospect
+    }
+    
 
-  const [prospect, setProspect] = useState({
-    p: props.location.state.p
-});
-
-
-  function handleChange(e) {
-    e.persist()
-    setProspect({
-      ...prospect,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  function handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-     prospectService.update(prospect);
-      props.handleUpdateProspect(prospect.p);
-      props.history.push('/');
-  }
+    this.props.handleUpdateProspect(this.state.formData);
+  };
 
+  handleChange = e => {
+    const formData = {...this.state.formData, 
+    [e.target.name]: e.target.value};
+    this.setState({
+        formData,
+    });
+  };
+
+  render () {
   return (
-    <div className="add-prospect-page ui container">
-      <h1>{prospect.p.firstName}</h1>
-      <h4>{prospect.p.lastName}</h4>
+    <div className="add-formProspect-page ui container">
+      {/* <h1>{this.formData.firstName}</h1>
+      <h4>{this.formData.lastName}</h4> */}
       <Link className="ui top attached button" to={'/prospects'}>◄ MY PROSPECTS</Link>
-      <Form onSubmit={handleSubmit} >
+      <Form onSubmit={this.handleSubmit} >
         <Form.Group widths='equal'>
           <Form.Input 
             placeholder='FIRST NAME' 
             name='firstName' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input 
             placeholder='LAST NAME' 
             name='lastName' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input 
             placeholder='PROFILE' 
             name='profile' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input  
             placeholder='YEAR' 
             name='year' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='POSITION' 
             name='position' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input  
             placeholder='HEIGHT' 
             name='height' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='WEIGHT' 
             name='weight' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input  
             placeholder='HIGH SCHOOL' 
             name='highSchool' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='CLUB TEAM' 
             name='clubTeam' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input  
             placeholder='PHONE' 
             name='phone' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='EMAIL' 
             name='email' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input  
             placeholder='CITY' 
             name='city' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
             placeholder='STATE' 
             name='state' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
           <Form.Input  
             placeholder='SCORE' 
             name='score' 
-            onChange={handleChange}
+            onChange={this.handleChange}
           />        
         </Form.Group>
         <Form.Button className="ui bottom attached button">SUBMIT</Form.Button>
       </Form>
     </div>
   )
+  }
 }
 
 export default EditProspect;

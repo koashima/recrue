@@ -1,3 +1,4 @@
+  
 // import React, { useState, useEffect }from 'react';
 import Info from '../Info/Info';
 import Interaction from '../Interaction/Interaction';
@@ -65,10 +66,17 @@ export default Prospect;
 //   useEffect( () => {
 //     const id = props.match.params.id;
 //     console.log(id)
+//     console.log(p[id])
 //     setP(
-//       props.prospect[id]
-//     )
-//   });   
+//       firstName: props.prospect[id].firstName,
+//       lastName: props.prospect[id].lastName,
+//       position: props.prospect[id].position,
+//       year: props.prospect[id].year,
+//       phone: props.prospect[id].phone,
+//       email: props.prospect[id].email,
+//       city: props.prospect[id].city,
+//       state: props.prospect[id].state,
+//   )}, []);   
   
 //   return(
 //       <div className="App">
@@ -78,7 +86,7 @@ export default Prospect;
 
 //         <Info />
 //         <Interaction />
-//         <Note />
+//         <Notes />
 //       </div>  
 //     );
 //   }
