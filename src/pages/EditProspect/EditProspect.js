@@ -26,8 +26,8 @@ const EditProspect = (props) => {
 
   return (
     <div className="add-prospect-page ui container">
-      {/* <h1>{prospect.p.firstName}</h1>
-      <h4>{prospect.p.lastName}</h4> */}
+      <h1>{prospect.p.firstName}</h1>
+      <h4>{prospect.p.lastName}</h4>
       <Link className="ui top attached button" to={'/prospects'}>◄ MY PROSPECTS</Link>
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>

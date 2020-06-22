@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
+import Prospect from '../../components/Prospect/Prospect';
 
 function ProspectsPage (props) { 
 
   const [prospect, setProspect] = useState([]);
-  const [editing, setEditing] = useState(null);
 
   useEffect( () => {
     async function getProspects () {
@@ -13,7 +13,7 @@ function ProspectsPage (props) {
       setProspect(prospects);
     } 
     getProspects()
-  }, []);
+  }, [setProspect]);
 
   async function handleDeleteProspect (id) {
     await prospectService.deleteOne(id);
@@ -31,23 +31,14 @@ function ProspectsPage (props) {
       <h1>MY PROSPECTS</h1>
     </div>
       <div>
-        {prospect.map( (p, i) => 
+        {prospect.map( (entry) => 
          
-          <div className='container ui basic vertical buttons' key={i}>
-            
-            <Link 
-              className='ui basic button' 
-              to={`/prospects/${i}`}>{p.firstName} {p.lastName}
-              ►
-            </Link> 
-            <Link className="ui button" to={{pathname: '/editprospect', state: {p, i} }}>EDIT</Link>
-            <button
-                className='ui button'
-                onClick={() => handleDeleteProspect(p._id)}
-                >
-                DELETE
-            </button>
-          </div>
+          <Prospect 
+            prospect={prospect}
+            handleDeleteEntry={props.handleDeleteEntry}
+            key={entry._id}
+            handleUpdateEntry={props.handleUpdateEntry}
+          />
         )}
       </div>
     </div>

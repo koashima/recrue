@@ -1,90 +1,63 @@
-// import React, { useState, useEffect }from 'react';
-import Info from '../Info/Info';
-import Interaction from '../Interaction/Interaction';
-import Notes from '../Notes/Notes';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 
+class Prospect extends Component {
+    state = {
+        isEditing: null,
+        formData:  {
+          firstName: this.props.prospect.firstName,
+          lastName: this.props.prospect.lastName,
+          position: this.props.prospect.position,
+          year: this.props.prospect.year,
+          phone: this.props.prospect.phone,
+          email: this.props.prospect.email,
+          city: this.props.prospect.city,
+          state: this.props.prospect.state,
+        }
+    }
 
-import React from 'react';
+    handleEditing = (prosId) => {
+        this.setState({isEditing: prosId})
+    }
 
-class Prospect extends React.Component {
-  constructor() { 
-    super()
-    this.state = {
-    };
-  }
+    handleChange = e => {
+        const formData = {...this.state.formData, [e.target.name]: e.target.value}
+        this.setState({
+            formData
+        })
+    }
 
-  componentDidMount() {
-    console.log('compenentDidMount')
-    const id = this.props.match.params.id;
+    handleSubmit = e => {
+        this.props.handleUpdateEntry(this.state.formData, this.props.prospect._id)
+    }
 
-    this.setState( (prevState) => ({
-      isEditing: null,
+    render() {
 
-      firstName: this.props.prospect[id].firstName,
-      lastName: this.props.prospect[id].lastName,
-      position: this.props.prospect[id].position,
-      year: this.props.prospect[id].year,
-      phone: this.props.prospect[id].phone,
-      email: this.props.prospect[id].email,
-      city: this.props.prospect[id].city,
-      state: this.props.prospect[id].state,
-      id: this.props.prospect[id]._id
-    }));
-  }
+        let prospect;
 
-  render() { 
-    return(
-      <>
-      <Link className="ui left floated button" to={'/prospects'}>◄ MY PROSPECTS</Link>
-      <br/>
-      <br/>
-        <h1>{this.state.firstName}</h1>
-        <h1>{this.state.id}</h1>
-        <p>{this.state.lastName}</p>
-        <p>{this.state.position}</p>
-        <p>{this.state.year}</p>
-        <p>{this.state.phone}</p>
-        <p>{this.state.email}</p>
-        <p>{this.state.city}</p>
-        <p>{this.state.state}</p>
-        <p>{this.state.city}</p>
-        <Info />
-        <Interaction />
-        <Notes />
-
-      </>  
-    );
-  }
+        if (this.state.isEditing === this.props.prospect._id) {
+            prospect = <div>editing!</div>
+        } else {
+            prospect =      
+            <>
+            <br/>
+            <br/>
+              <h1>{this.state.formData.firstName}</h1>
+              <p>{this.state.formData.lastName}</p>
+              <p>{this.state.formData.position}</p>
+              <p>{this.state.formData.year}</p>
+              <p>{this.state.formData.phone}</p>
+              <p>{this.state.formData.email}</p>
+              <p>{this.state.formData.city}</p>
+              <p>{this.state.formData.state}</p>
+              <p>{this.state.formData.city}</p>
+              <button onClick={() => this.handleEditing(this.props.prospect._id)}>Edit</button>
+              
+            </>  
+        }
+        return (
+            [prospect]
+        )
+    }
 }
+
 export default Prospect;
-
-
-
-
-// const Prospect = (props) =>  {
-
-//   const [p, setP] = useState()
-
-//   useEffect( () => {
-//     const id = props.match.params.id;
-//     console.log(id)
-//     setP(
-//       props.prospect[id]
-//     )
-//   });   
-  
-//   return(
-//       <div className="App">
-//         <Link className="ui left floated button" to={'/prospects'}>◄ MY PROSPECTS</Link>
-//         <br/>
-       
-
-//         <Info />
-//         <Interaction />
-//         <Note />
-//       </div>  
-//     );
-//   }
-
-// export default Prospect;
