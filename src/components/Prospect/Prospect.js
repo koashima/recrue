@@ -5,19 +5,21 @@ import Notes from '../Notes/Notes';
 
 function Prospect({ prospect, handleDeleteProspect, user }) {
   return (
-    <div className="panel">
+    <div className="ui container">
       <div className="panel-heading">
-        <h4 className="panel-title2">{prospect.firstName}</h4>
+        <h4 className="panel-title2">
+          {prospect.firstName} <br /> {prospect.lastName}
+        </h4>
       </div>
-      <div >
+      <div>
         <Interaction />
         <Notes />
       </div>
       <br />
-      <div className="panel-footer">
+      <div>
         {prospect.user === user._id ? (
           <Link
-            className="ui left floated button"
+            className="ui button"
             to={{
               pathname: '/editprospect',
               state: { prospect },
@@ -29,7 +31,10 @@ function Prospect({ prospect, handleDeleteProspect, user }) {
           <></>
         )}
         {prospect.user === user._id ? (
-          <button onClick={() => handleDeleteProspect(prospect._id)}>
+          <button
+            className="ui button"
+            onClick={() => handleDeleteProspect(prospect._id)}
+          >
             DELETE
           </button>
         ) : (

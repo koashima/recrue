@@ -5,12 +5,15 @@ function ProspectsPage(props) {
   return (
     <div classnamee="container">
       <div classnamee="ui top attached buttons">
-        <Link to="" className="ui button " onClick={props.handleLogout}>
-          BACK
+        <Link className="ui button " onClick={props.handleLogout}>
+          LOGOUT
+        </Link>{' '}
+        <Link className="ui button" to="/addprospect">
+          + PROSPECT
         </Link>
         <h1>MY PROSPECTS</h1>
       </div>
-      <div className="container ui basic vertical buttons">
+      <div className="ui container">
         {props.prospects.map((prospect) => (
           <Prospect
             key={prospect._id}

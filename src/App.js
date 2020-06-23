@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { Route, Switch, } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import userService from './utils/userService';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -11,112 +11,140 @@ import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
 import EditProspect from './pages/EditProspect/EditProspect';
 
-class App extends React.Component  {
-  
-  state = { 
+class App extends React.Component {
+  state = {
     prospects: [],
-    user: userService.getUser
-  }
+    user: userService.getUser,
+  };
 
-  handleLogout = () => { 
+  handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
-  }
+  };
 
   handleSignupOrLogin = () => {
-    this.setState({ user: userService.getUser()});
-  }
+    this.setState({ user: userService.getUser() });
+  };
 
-  handleAddProspect = async newProspectData => {
+  handleAddProspect = async (newProspectData) => {
     const newProspect = await prospectService.create(newProspectData);
-    this.setState(state => ({
-      prospects: [...state.prospects, newProspect]
-    }), () => 
-    this.props.history.push('/'));
-  }
-
-  handleUpdateProspect = async updatedProspectData => {
-    const updatedProspect = await prospectService.update(updatedProspectData);
-    const newProspectArray = this.state.prospects.map(p => 
-      p._id === updatedProspect._id ? updatedProspect : p
-    );
     this.setState(
-      {prospects: newProspectArray},
+      (state) => ({
+        prospects: [...state.prospects, newProspect],
+      }),
       () => this.props.history.push('/')
     );
-  }
+  };
+
+  handleUpdateProspect = async (updatedProspectData) => {
+    const updatedProspect = await prospectService.update(updatedProspectData);
+    const newProspectArray = this.state.prospects.map((p) =>
+      p._id === updatedProspect._id ? updatedProspect : p
+    );
+    this.setState({ prospects: newProspectArray }, () =>
+      this.props.history.push('/')
+    );
+  };
+
+  handleDeleteProspect = async (id) => {
+    await prospectService.deleteOne(id);
+    this.setState(
+      (state) => ({
+        prospects: state.prospects.filter((p) => p._id !== id),
+      }),
+      () => this.props.history.push('/prospects')
+    );
+  };
 
   async componentDidMount() {
     const prospects = await prospectService.getAll();
-    this.setState({prospects});
+    this.setState({ prospects });
   }
 
   render() {
-  return (
-    <Switch>
-      <>
-      <div className="App">
-        <header className="App-header" style={{ fontStyle: "italic"}}>R E <span style={{ textDecoration: 'line-through'}}>C R U E</span></header>
+    return (
+      <Switch>
+        <>
+          <div className="App">
+            <header className="App-header" style={{ fontStyle: 'italic' }}>
+              R E{' '}
+              <span style={{ textDecoration: 'line-through' }}>C R U E</span>
+            </header>
 
-        <Route 
-          exact path='/'
-          render={ () =>
-            <Nav 
-              user={this.user}
-              handleLogout={this.handleLogout}
-            />               
-          }
-        />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Nav user={this.user} handleLogout={this.handleLogout} />
+              )}
+            />
 
-        <Route 
-          exact path='/signup' 
-          render={ ({history}) => (
-            <SignupPage
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}
-            /> 
-          )} 
-        />
-        <Route 
-          exact path='/login'
-          render={ ({history}) => 
-            <LoginPage 
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}/>
-          }
-        />
-        <Route exact path="/prospects" render={ ({props, history}) => 
-          <ProspectsPage
-            history={history}
-            prospects={this.state.prospects} 
-            user={this.state.user} {...props} />
-        } />
-        <Route path="/prospects/:id" render={ (props) => 
-          <Prospect prospects={this.prospects} {...props} />
-        } />
-        <Route 
-          exact path='/addprospect'
-          render={ ({history}) => 
-            <AddProspect 
-              history={history}
-              handleAddProspect={this.handleAddProspect}/>
-          }
-        />
-        <Route 
-          exact path='/editprospect'
-          render={ ({history, location}) => 
-            <EditProspect 
-              history={history}
-              location={location}
-              handleUpdateProspect={this.handleUpdateProspect}/>
-          }
-        />
-      </div>      
-    </>
-    </Switch>
-  );
+            <Route
+              exact
+              path="/signup"
+              render={({ history }) => (
+                <SignupPage
+                  history={history}
+                  handleSignupOrLogin={this.handleSignupOrLogin}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/login"
+              render={({ history }) => (
+                <LoginPage
+                  history={history}
+                  handleSignupOrLogin={this.handleSignupOrLogin}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/prospects"
+              render={({ props, history }) => (
+                <ProspectsPage
+                  {...props}
+                  history={history}
+                  prospects={this.state.prospects}
+                  user={this.state.user}
+                  handleLogOut={this.handleLogout}
+                  handleDeleteProspect={this.handleDeleteProspect}
+                />
+              )}
+            />
+            <Route
+              path="/prospects/:id"
+              render={(props) => (
+                <Prospect prospects={this.prospects} {...props} />
+              )}
+            />
+            <Route
+              exact
+              path="/addprospect"
+              render={({ history }) => (
+                <AddProspect
+                  history={history}
+                  handleAddProspect={this.handleAddProspect}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/editprospect"
+              render={({ history, location }) => (
+                <EditProspect
+                  history={history}
+                  location={location}
+                  handleUpdateProspect={this.handleUpdateProspect}
+                />
+              )}
+            />
+          </div>
+        </>
+      </Switch>
+    );
   }
 }
-
 
 export default App;

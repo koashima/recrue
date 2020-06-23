@@ -18,6 +18,7 @@ const noteSchema = new Schema({
 
 const prospectSchema = new Schema(
   {
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     firstName: String,
     lastName: String,
     profile: String,
