@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 const EditProspect = (props) => { 
 
-  const [prospect, setProspect] = useState({
-    p: props.location.state.p
-});
+  const [prospect, setProspect] = useState(
+    props.location.state.p
+);
 
 
   function handleChange(e) {
-    // e.persist()
+    e.persist()
     setProspect({
       ...prospect,
       [e.target.name]: e.target.value
@@ -20,27 +20,25 @@ const EditProspect = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-      props.handleUpdateProspect(prospect.p);
+      props.handleUpdateProspect(prospect);
       props.history.push('/');
   }
 
   return (
     <div className="add-prospect-page ui container">
-      {/* <h1>{prospect.p.firstName}</h1>
-      <h4>{prospect.p.lastName}</h4> */}
+      <h1>{prospect.firstName}</h1>
+      <h4>{prospect.lastName}</h4>
       <Link className="ui top attached button" to={'/prospects'}>◄ MY PROSPECTS</Link>
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>
           <Form.Input 
-            placeholder= {prospect.p.firstName}
+            placeholder= 'first name'
             name='firstName'
-            value={prospect.p.firstName}
             onChange={handleChange}
           />
           <Form.Input 
             placeholder='LAST NAME' 
             name='lastName'
-            value={prospect.p.lastName}
             onChange={handleChange}
           />        
         </Form.Group>

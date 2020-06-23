@@ -12,9 +12,8 @@ import AddProspect from './pages/AddProspect/AddProspect';
 import EditProspect from './pages/EditProspect/EditProspect';
 
 const App = () => {
-
   let [user, setUser] = useState(userService.getUser());
-  
+
   let [prospect, setProspect] = useState([]);
 
   function handleLogout() {
@@ -38,11 +37,11 @@ const App = () => {
 
   const handleUpdateProspect = async (updatedProspectData) => {
     const updatedProspect = await prospectService.update(updatedProspectData);
-
+    console.log(updatedProspect)
     const newProspectArray = prospect.map((p) =>
       p._id === updatedProspect._id ? updatedProspect : p
     );
-    setProspect({ prospect: newProspectArray });
+    setProspect(newProspectArray);
   };
 
   useEffect(() => {

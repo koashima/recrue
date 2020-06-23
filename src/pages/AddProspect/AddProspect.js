@@ -84,7 +84,6 @@ const AddProspect = (props) => {
           <Form.Input  
             placeholder='HEIGHT' 
             name='height'
-
             onChange={handleChange}
           />        
         </Form.Group>

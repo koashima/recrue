@@ -5,7 +5,6 @@ import prospectService from '../../utils/prospectService';
 function ProspectsPage (props) { 
 
   const [prospect, setProspect] = useState([]);
-  const [editing, setEditing] = useState(null);
 
   useEffect( () => {
     async function getProspects () {
