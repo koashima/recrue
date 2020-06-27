@@ -32,7 +32,7 @@ function ProspectsPage (props) {
       <div>
         {prospect.map( (p, i) => 
          
-          <div className='container ui basic vertical buttons' key={i}>
+          <div className='container ui basic horizontal buttons space-between' key={i}>
             
             <Link 
               className='ui basic button' 
@@ -42,6 +42,7 @@ function ProspectsPage (props) {
             <Link className="ui button" to={{pathname: '/editprospect', state: {p, i} }}>EDIT</Link>
             <button
                 className='ui button'
+                style={{maxWidth: 37, minWidth: 37}}
                 onClick={() => handleDeleteProspect(p._id)}
                 >
                 DELETE

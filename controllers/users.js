@@ -24,7 +24,6 @@ async function login(req, res) {
   }
 }
 
-
 async function signup(req, res) { 
   const user = new User(req.body);
   try {

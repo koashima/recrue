@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css'
 
-
-const Nav = (props) => { 
+const Nav = (props) => {
   let nav = props.user ? (
-    <div>
+    <div className="NavBar-container">
       <Link to="/prospects" className="NavBar-link">
         PROSPECTS
       </Link>
@@ -14,10 +13,10 @@ const Nav = (props) => {
         LOG OUT
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span className="welcome">WELCOME, {props.user.name}</span>
+      <span>WELCOME, {props.user.name}</span>
     </div>
   ) : (
-    <div>
+    <div className="NavBar-container">
       <Link to="/login" className="NavBar-link">
         LOG IN
       </Link>
@@ -28,7 +27,7 @@ const Nav = (props) => {
     </div>
   );
 
-  return <div className="NavBar">{nav}</div>;
+  return [nav];
 };
 
 export default Nav;

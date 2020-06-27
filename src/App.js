@@ -37,7 +37,7 @@ const App = () => {
 
   const handleUpdateProspect = async (updatedProspectData) => {
     const updatedProspect = await prospectService.update(updatedProspectData);
-    console.log(updatedProspect)
+    console.log(updatedProspect);
     const newProspectArray = prospect.map((p) =>
       p._id === updatedProspect._id ? updatedProspect : p
     );
@@ -59,13 +59,11 @@ const App = () => {
           <header className="App-header" style={{ fontStyle: 'italic' }}>
             R E <span style={{ textDecoration: 'line-through' }}>C R U E</span>
           </header>
-
           <Route
             exact
             path="/"
             render={() => <Nav user={user} handleLogout={handleLogout} />}
           />
-
           <Route
             exact
             path="/signup"

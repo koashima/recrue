@@ -9,7 +9,6 @@ const EditProspect = (props) => {
     props.location.state.p
 );
 
-
   function handleChange(e) {
     e.persist()
     setProspect({
@@ -32,31 +31,31 @@ const EditProspect = (props) => {
       <Form onSubmit={handleSubmit} >
         <Form.Group widths='equal'>
           <Form.Input 
-            placeholder= 'first name'
+            placeholder={prospect.firstName}
             name='firstName'
             onChange={handleChange}
           />
           <Form.Input 
-            placeholder='LAST NAME' 
+            placeholder={prospect.lastName}
             name='lastName'
             onChange={handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input 
-            placeholder='PROFILE' 
+            placeholder={prospect.profile} 
             name='profile' 
             onChange={handleChange}
           />
           <Form.Input  
-            placeholder='YEAR' 
+            placeholder={prospect.year}
             name='year' 
             onChange={handleChange}
           />        
         </Form.Group>
         <Form.Group widths='equal'>
           <Form.Input  
-            placeholder='POSITION' 
+            placeholder={prospect.position} 
             name='position' 
             onChange={handleChange}
           />
