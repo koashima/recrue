@@ -7,14 +7,12 @@ module.exports = {
   delete: deleteOne,
 };
 
-
 async function index(req, res) {
-  try{
-      const prospects = await Prospect.find({});
-      res.status(200).json(prospects);
-  }
-  catch(err){
-      res.status(500).json(err);
+  try {
+    const prospects = await Prospect.find({}).sort({ _id: -1 });
+    res.status(200).json(prospects);
+  } catch (err) {
+    res.status(500).json(err);
   }
 }
 
@@ -26,21 +24,23 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-  try{
-    const updatedProspect = await Prospect.findByIdAndUpdate(req.params.id, req.body, {new: true});
+  try {
+    const updatedProspect = await Prospect.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     res.status(200).json(updatedProspect);
-  }
-  catch(err){
+  } catch (err) {
     res.status(500).json(err);
   }
 }
 
 async function deleteOne(req, res) {
-  try{
-    const deletedEntry = await Prospect.findByIdAndRemove(req.params.id)
-    res.status(200).json(deletedEntry)
-  }
-    catch(err){
-    res.status(500).json(err)
+  try {
+    const deletedEntry = await Prospect.findByIdAndRemove(req.params.id);
+    res.status(200).json(deletedEntry);
+  } catch (err) {
+    res.status(500).json(err);
   }
 }

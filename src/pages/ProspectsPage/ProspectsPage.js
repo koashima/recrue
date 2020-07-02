@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import prospectService from '../../utils/prospectService';
-import Prospect from '../../components/Prospect/Prospect';
-
+import { List } from 'semantic-ui-react';
 
 function ProspectsPage(props) {
   const [prospect, setProspect] = useState([]);
@@ -38,30 +37,32 @@ function ProspectsPage(props) {
       </div>
       <div>
         {prospect.map((p, i) => (
-          <div
-            className="container ui basic horizontal buttons space-between"
-            key={i}
-          >
-            <Link
-              className="ui basic button"
-              to={{ pathname: `/prospects/${p._id}`, state: { p } }}
-            >
-              {p.firstName} {p.lastName} ►
-            </Link>
-            <Link
-              className="ui button"
-              to={{ pathname: '/editprospect', state: { p, i } }}
-            >
-              EDIT
-            </Link>
-            <button
-              className="ui button"
-              style={{ maxWidth: 37, minWidth: 37 }}
-              onClick={() => handleDeleteProspect(p._id)}
-            >
-              DELETE
-            </button>
-          </div>
+          <List selection verticalAlign="middle" key={i}>
+            <List.Item>
+              <List.Content>
+                <Link
+                  className=""
+                  style={{ fontSize: `1.5rem`, color: "#5A0"}}
+                  to={{ pathname: `/prospects/${p._id}`, state: { p } }}
+                >
+                  {p.firstName} {p.lastName} ►{' '}
+                  <Link
+                    className="ui right floated button"
+                    to={{ pathname: '/editprospect', state: { p, i } }}
+                  >
+                    EDIT
+                  </Link>
+                  <button
+                    className="ui right floated button"
+                    // style={{ maxWidth: 37, minWidth: 37 }}
+                    onClick={() => handleDeleteProspect(p._id)}
+                  >
+                    DELETE
+                  </button>
+                </Link>
+              </List.Content>
+            </List.Item>
+          </List>
         ))}
       </div>
     </div>
