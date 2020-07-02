@@ -13,6 +13,7 @@ const Note = (props) => {
   return(
     <Form>
       <TextArea onChange={handleChange} placeholder='PROSPECT NOTES' />
+      <button >SAVE NOTE</button>
     </Form>
   )
 }

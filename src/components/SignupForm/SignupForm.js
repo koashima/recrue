@@ -41,9 +41,8 @@ const SignupForm = (props) => {
   return (
     <div>
       <br />
-      <header className="">SIGN UP</header>
-      <br />
-      <form className="form-horizontal ui form" onSubmit={handleSubmit}>
+      <header className="ui top attached header">SIGN UP</header>
+      <form className="ui form ui attached segment" onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="col-sm-12">
             <input
@@ -56,8 +55,8 @@ const SignupForm = (props) => {
             />
           </div>
         </div>
-        <div className="form-group">
-          <div className="col-sm-12">
+        <div>
+          <div>
             <input
               type="email"
               className="form-control"
@@ -68,8 +67,8 @@ const SignupForm = (props) => {
             />
           </div>
         </div>
-        <div className="form-group">
-          <div className="col-sm-12">
+        <div>
+          <div>
             <input
               type="password"
               className="form-control"
@@ -80,8 +79,8 @@ const SignupForm = (props) => {
             />
           </div>
         </div>
-        <div className="form-group">
-          <div className="col-sm-12">
+        <div>
+          <div>
             <input
               type="password"
               className="form-control"
@@ -92,22 +91,20 @@ const SignupForm = (props) => {
             />
           </div>
         </div>
-        <div className="form-group">
-          <div className="col-sm-12 text-center">
-            <button
-              className="ui button"
-              style={{ marginTop: `1.5rem` }}
-              disabled={isFormInvalid()}
-            >
-              Sign Up
-            </button>
-            &nbsp;&nbsp;
-            <Link to="/" className="ui button">
-              CANCEL
-            </Link>
-          </div>
-        </div>
       </form>
+        <div>
+          <button
+            className="ui button"
+            style={{ marginTop: `1.5rem` }}
+            disabled={isFormInvalid()}
+          >
+            Sign Up
+          </button>
+          &nbsp;&nbsp;
+          <Link to="/" className="ui button">
+            CANCEL
+          </Link>
+        </div>
     </div>
   );
 };

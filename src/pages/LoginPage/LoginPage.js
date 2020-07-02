@@ -25,7 +25,7 @@ const LoginPage = (props) => {
   }
 
   return (
-    <div className="LoginPage ui form">
+    <div className="LoginPage ui form" style={{maxWidth: 400}}>
       <header className="header-footer">LOG IN</header>
       <form className="form-horizontal" onSubmit={handleSubmit}>
         <div className="form-group">

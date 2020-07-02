@@ -98,7 +98,7 @@ const App = () => {
           />
           <Route
             path="/prospects/:id"
-            render={(props) => <Prospect prospect={prospect} {...props} />}
+            render={(props) => <Prospect prospect={prospect} key={prospect.id} {...props} />}
           />
           <Route
             exact
