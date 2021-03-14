@@ -27,7 +27,7 @@ function ProspectsPage(props) {
   return (
     <div classnamee="container">
       <div classnamee="ui top attached buttons">
-        <Link className="ui button " to={'/addprospect'}>
+        <Link className="ui button " to="/addprospect">
           + NEW PROSPECT
         </Link>
         <Link to="" className="ui button " onClick={props.handleLogout}>
@@ -42,10 +42,10 @@ function ProspectsPage(props) {
               <List.Content>
                 <Link
                   className=""
-                  style={{ fontSize: `1.5rem`, color: "#5A0"}}
+                  style={{ fontSize: `1.5rem`, color: '#5A0' }}
                   to={{ pathname: `/prospects/${p._id}`, state: { p } }}
                 >
-                  {p.firstName} {p.lastName} ►{' '}
+                  {p.firstName} {p.lastName} ►
                   <Link
                     className="ui right floated button"
                     to={{ pathname: '/editprospect', state: { p, i } }}

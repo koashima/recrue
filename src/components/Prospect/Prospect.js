@@ -7,7 +7,7 @@ function Prospect(props) {
 
   return (
     <div>
-      <Link className="ui top attached button" to={'/prospects'}>
+      <Link className="ui top attached button" to='/prospects'>
         ◄ MY PROSPECTS
       </Link>
 
@@ -15,7 +15,7 @@ function Prospect(props) {
         <h1>
           {prospect.firstName} {prospect.lastName}
         </h1>
-        <div class="ui section divider"></div>
+        <div className="ui section divider"></div>
         <div
           className="prospect-info"
           style={{ display: `flex`, flexDirection: `column` }}

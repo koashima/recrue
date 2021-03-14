@@ -91,7 +91,6 @@ const SignupForm = (props) => {
             />
           </div>
         </div>
-      </form>
         <div>
           <button
             className="ui button"
@@ -105,6 +104,7 @@ const SignupForm = (props) => {
             CANCEL
           </Link>
         </div>
+      </form>
     </div>
   );
 };
