@@ -23,7 +23,8 @@ function ProspectsPage(props) {
       props.history.push('/')
     );
   }
-
+  //       style={{ fontSize: `1.5rem`, color: '#5A0' }}
+  // to={{ pathname: `/prospects/${p._id}`, state: { p } }}
   return (
     <div classnamee="container">
       <div classnamee="ui top attached buttons">
@@ -43,15 +44,9 @@ function ProspectsPage(props) {
                 <Link
                   className=""
                   style={{ fontSize: `1.5rem`, color: '#5A0' }}
-                  to={{ pathname: `/prospects/${p._id}`, state: { p } }}
+                  to={{ pathname: '/prospect', state: { p, i } }}
                 >
                   {p.firstName} {p.lastName} ►
-                  <Link
-                    className="ui right floated button"
-                    to={{ pathname: '/editprospect', state: { p, i } }}
-                  >
-                    EDIT
-                  </Link>
                   <button
                     className="ui right floated button"
                     // style={{ maxWidth: 37, minWidth: 37 }}

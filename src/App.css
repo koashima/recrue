@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
   margin: 0 auto;
-  color: #5A0;
-  background-color: #DFA;
+  color: #151515;
+  background-color: whitesmoke;
 }
 
 html {
@@ -11,22 +11,18 @@ html {
   margin: 0;
 }
 
-
-
 .App {
   text-align: center;
   height: 100vh;
   max-width: 750px;
   padding: 40px;
-  background-color: #DFA;
+  background-color: whitesmoke;
 
 }
 
 .App-header {
   height: 50px;
   padding: 10px;
-  color: #5A0;
-  background-color: #DFA;
   font-size: 18px;
   text-align: center;
   font-size: 3rem;
