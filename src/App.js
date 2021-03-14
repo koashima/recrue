@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import userService from './utils/userService';
@@ -6,10 +6,9 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Nav from './components/Nav/Nav';
 import ProspectsPage from './pages/ProspectsPage/ProspectsPage';
-import Prospect from './components/Prospect/Prospect';
 import prospectService from './utils/prospectService';
 import AddProspect from './pages/AddProspect/AddProspect';
-import EditProspect from './pages/EditProspect/EditProspect';
+import EditProspect from './pages/ShowEditProspect/ShowEditProspect';
 
 const App = () => {
   let [user, setUser] = useState(userService.getUser());
@@ -44,20 +43,12 @@ const App = () => {
     setProspect(newProspectArray);
   };
 
-  // useEffect(() => {
-  //   async function getProspects() {
-  //     const prospects = await prospectService.getAll();
-  //     setProspect(prospects);
-  //   }
-  //   getProspects();
-  // }, []);
-
   return (
     <Switch>
       <>
         <div className="App">
           <header className="App-header" style={{ fontStyle: 'italic' }}>
-            R E <span style={{ textDecoration: 'line-through' }}>C R U E</span>
+            R E <span style={{ textDecoration: 'underline' }}>C R U E</span>
           </header>
           <Route
             exact
@@ -97,10 +88,6 @@ const App = () => {
             )}
           />
           <Route
-            path="/prospects/:id"
-            render={(props) => <Prospect prospect={prospect} key={prospect.id} {...props} />}
-          />
-          <Route
             exact
             path="/addprospect"
             render={({ history }) => (
@@ -112,7 +99,7 @@ const App = () => {
           />
           <Route
             exact
-            path="/editprospect"
+            path="/prospect"
             render={({ history, location }) => (
               <EditProspect
                 history={history}
